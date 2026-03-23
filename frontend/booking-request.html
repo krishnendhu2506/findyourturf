@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Request - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="px-6 py-6 bg-white shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">Booking Request</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="dashboard.html" class="btn-outline px-4 py-2 rounded-xl">Back to Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10 space-y-8">
+    <section class="glass rounded-3xl p-6">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+        <div>
+          <h1 class="text-4xl">Submit Booking Request</h1>
+          <p class="muted mt-2">Your request will stay <span class="font-semibold">pending</span> until the admin verifies the payment screenshot and confirms the booking.</p>
+        </div>
+        <div class="text-sm">
+          <div class="muted">Admin Contact</div>
+          <div id="adminContact" class="text-slate-200 font-semibold"></div>
+        </div>
+      </div>
+
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <div class="card p-5">
+            <h2 class="text-2xl">Booking Summary</h2>
+            <div id="bookingSummary" class="mt-3 space-y-1 text-sm"></div>
+
+            <div class="mt-5 flex flex-col gap-3">
+              <button id="checkWeatherBtn" type="button" class="btn-outline inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm">
+                <i class="fa-solid fa-cloud-sun"></i>
+                Check Weather Conditions
+              </button>
+              <div id="weatherResult" class="hidden"></div>
+            </div>
+          </div>
+
+        <div class="card p-5">
+          <h2 class="text-2xl">Instructions</h2>
+          <p class="muted mt-2">Transfer the amount to the admin and upload payment screenshot.</p>
+          <div class="mt-4 text-sm muted">
+            Refund Policy:
+            <ul class="list-disc ml-5 mt-2 space-y-1">
+              <li>Refund allowed if cancellation happens at least 3 hours before slot.</li>
+              <li>Refund processed manually by admin.</li>
+              <li>Refund approval depends on admin verification.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass rounded-3xl p-6">
+      <h2 class="text-3xl">Your Details</h2>
+      <form id="bookingRequestForm" class="mt-4 grid gap-4">
+        <input type="hidden" name="turf_id" id="turfId" />
+        <input type="hidden" name="date" id="bookingDate" />
+        <input type="hidden" name="time_slot" id="timeSlot" />
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm muted">User Name</label>
+            <input id="userNameInput" name="user_name" required class="w-full border border-slate-200 rounded-xl px-4 py-2" />
+          </div>
+          <div>
+            <label class="text-sm muted">Phone Number</label>
+            <input id="userPhoneInput" name="phone_number" required class="w-full border border-slate-200 rounded-xl px-4 py-2" />
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm muted">Number of Players</label>
+            <input name="players_count" type="number" min="1" required class="w-full border border-slate-200 rounded-xl px-4 py-2" />
+          </div>
+          <div>
+            <label class="text-sm muted">Special Notes (optional)</label>
+            <input name="special_notes" class="w-full border border-slate-200 rounded-xl px-4 py-2" />
+          </div>
+        </div>
+
+        <div class="card p-5">
+          <h3 class="text-2xl">Payment Screenshot</h3>
+          <input id="paymentScreenshot" name="payment_screenshot" type="file" accept="image/png,image/jpeg" required class="mt-3 w-full" />
+          <div id="screenshotPreviewWrap" class="mt-4 hidden">
+            <img id="screenshotPreview" alt="Payment screenshot preview" class="rounded-2xl max-h-72 object-contain border border-slate-700" />
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-3">
+          <button type="submit" class="btn-primary px-6 py-3 rounded-xl">Submit Booking Request</button>
+          <p id="bookingRequestMessage" class="text-sm"></p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/payments.js"></script>
+  <script src="js/bookings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+:root {
+  --green: #16a34a;
+  --green-light: #22c55e;
+  --white: #ffffff;
+  --bg: #0f172a;
+  --dark: #f8fafc;
+  --muted: #94a3b8;
+  --glass: rgba(15, 23, 42, 0.8);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1px;
+}
+
+.hero {
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.2)),
+    url("../assets/sports-backgrounds/hero.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-hero {
+  background: linear-gradient(120deg, rgba(2, 6, 23, 0.65), rgba(2, 6, 23, 0.45)),
+    url("../assets/sports-backgrounds/logins.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 24px rgba(22, 163, 74, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(22, 163, 74, 0.35);
+}
+
+.btn-outline {
+  border: 1px solid var(--green);
+  color: var(--green);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--green);
+  color: var(--white);
+}
+
+.card {
+  background: var(--glass);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 44px rgba(0, 0, 0, 0.4);
+}
+
+.card-animate {
+  animation: rise 0.6s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icon-badge {
+  background: rgba(22, 163, 74, 0.2);
+  color: var(--green-light);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.slot-status {
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.slot-available {
+  background: rgba(22, 163, 74, 0.15);
+  color: #15803d;
+}
+
+.slot-booked {
+  background: rgba(234, 179, 8, 0.2);
+  color: #b45309;
+}
+
+.slot-unavailable {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}
+
+.status-badge {
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.status-pending {
+  background: rgba(234, 179, 8, 0.2);
+  color: #eab308;
+}
+
+.status-confirmed {
+  background: rgba(34, 197, 94, 0.18);
+  color: #22c55e;
+}
+
+.status-rejected {
+  background: rgba(239, 68, 68, 0.18);
+  color: #ef4444;
+}
+
+.status-cancelled {
+  background: rgba(148, 163, 184, 0.18);
+  color: #94a3b8;
+}
+
+.booking-card {
+  animation: rise 0.6s ease both;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 50;
+}
+
+.modal-card {
+  width: min(900px, 95vw);
+  background: var(--glass);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 24px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.table-row {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  height: 36px;
+  width: 36px;
+}
+
+.section-title {
+  color: #0f172a;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Form elements dark theme */
+input,
+textarea,
+select {
+  background-color: #1e293b;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #22c55e;
+  outline: none;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Details - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="px-6 py-6 bg-white shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">Booking Details</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="my-bookings.html" class="btn-outline px-4 py-2 rounded-xl">My Bookings</a>
+        <a href="dashboard.html" class="btn-outline px-4 py-2 rounded-xl">Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10 space-y-8">
+    <section class="glass rounded-3xl p-6">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div>
+          <h1 class="text-4xl">Booking Details</h1>
+          <p class="muted mt-2">Track your booking status here.</p>
+        </div>
+        <div id="bookingStatusBadge" class="status-badge status-pending self-start"></div>
+      </div>
+
+      <div id="bookingDetailsCard" class="mt-6 grid md:grid-cols-2 gap-6"></div>
+      <p id="bookingDetailsMessage" class="text-sm mt-4"></p>
+    </section>
+
+    <section class="glass rounded-3xl p-6">
+      <h2 class="text-3xl">Refund</h2>
+      <p class="muted mt-2">Refund allowed if cancellation happens at least 3 hours before slot. Refunds are processed
+        manually by admin.</p>
+      <div class="mt-4 flex flex-col md:flex-row gap-3 items-start">
+        <a id="refundRequestBtn" href="#" class="btn-outline px-6 py-3 rounded-xl hidden">Request Refund</a>
+        <p id="refundMessage" class="text-sm"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/payments.js"></script>
+  <script src="js/bookings.js"></script>
+</body>
+
+</html>

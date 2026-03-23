@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="px-6 py-6 bg-white shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">My Bookings</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="dashboard.html" class="btn-outline px-4 py-2 rounded-xl">Back to Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <section class="glass rounded-3xl p-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-4xl">My Bookings</h1>
+          <p class="muted mt-2">Pending bookings turn confirmed after admin verifies payment.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead>
+            <tr class="text-left">
+              <th class="py-3">Turf</th>
+              <th>Date</th>
+              <th>Time Slot</th>
+              <th>Players</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="myBookingsTable"></tbody>
+        </table>
+      </div>
+      <p id="myBookingsMessage" class="text-sm mt-3"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/bookings.js"></script>
+</body>
+
+</html>

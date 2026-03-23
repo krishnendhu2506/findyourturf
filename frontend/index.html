@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="px-6 py-6">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">Palakkad Football Network</p>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="text-slate-300 hover:text-green-400">Home</a>
+        <a href="login.html" class="text-slate-300 hover:text-green-400">User Login</a>
+        <a href="admin-login.html" class="text-slate-300 hover:text-green-400">Admin Login</a>
+      </div>
+      <a href="register.html" class="btn-primary px-4 py-2 rounded-xl text-sm">Get Started</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero text-white">
+      <div class="max-w-6xl mx-auto px-6 py-20">
+        <div class="max-w-2xl">
+          <p class="uppercase text-sm tracking-widest">Modern Sports Booking</p>
+          <h1 class="text-5xl md:text-6xl mt-4">Find Your Perfect Football Turf</h1>
+          <p class="mt-5 text-white/90 leading-relaxed">Discover, compare, and book top-rated football turfs across
+            Palakkad with a clean, fast booking flow.</p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="register.html" class="btn-primary px-6 py-3 rounded-xl">Create Account</a>
+            <a href="login.html" class="btn-outline px-6 py-3 rounded-xl">User Login</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="icon-badge inline-flex items-center gap-2"><i class="fa-solid fa-location-dot"></i>Local Picks
+          </div>
+          <h3 class="text-2xl mt-4">Palakkad Exclusive</h3>
+          <p class="muted mt-2">All listings are verified football turfs across Palakkad.</p>
+        </div>
+        <div class="card p-6">
+          <div class="icon-badge inline-flex items-center gap-2"><i class="fa-solid fa-clock"></i>Slot Control</div>
+          <h3 class="text-2xl mt-4">Live Availability</h3>
+          <p class="muted mt-2">See green, yellow, and red slot statuses before you book.</p>
+        </div>
+        <div class="card p-6">
+          <div class="icon-badge inline-flex items-center gap-2"><i class="fa-solid fa-shield"></i>Admin Ready</div>
+          <h3 class="text-2xl mt-4">Manage Easily</h3>
+          <p class="muted mt-2">Admins can add turfs, control slots, and manage bookings.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-6 py-8">
+    <div class="max-w-6xl mx-auto text-sm text-slate-400">Find Your Turf ? <span id="year"></span></div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

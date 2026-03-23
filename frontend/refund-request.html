@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Request - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <header class="px-6 py-6 bg-white shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">Refund Request</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="my-bookings.html" class="btn-outline px-4 py-2 rounded-xl">My Bookings</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-10">
+    <section class="glass rounded-3xl p-6">
+      <h1 class="text-4xl">Request Refund</h1>
+      <p class="muted mt-2">Refund allowed only if requested at least 3 hours before slot time, and the booking is
+        cancelled.</p>
+
+      <div id="refundBookingSummary" class="mt-6 card p-5 text-sm"></div>
+
+      <form id="refundRequestForm" class="mt-6 grid gap-4">
+        <div>
+          <label class="text-sm muted">Reason</label>
+          <textarea name="reason" required rows="4" class="w-full border border-slate-200 rounded-xl px-4 py-2"></textarea>
+        </div>
+        <div class="flex flex-col md:flex-row gap-3 items-start">
+          <button type="submit" class="btn-primary px-6 py-3 rounded-xl">Submit Refund Request</button>
+          <p id="refundRequestMessage" class="text-sm"></p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/bookings.js"></script>
+</body>
+
+</html>
+

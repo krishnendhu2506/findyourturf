@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Login - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="auth-hero min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md glass rounded-3xl p-8">
+    <div class="logo mb-6">
+      <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+      <div>
+        <p class="text-xl font-semibold">Find Your Turf</p>
+        <p class="text-xs muted">User Login</p>
+      </div>
+    </div>
+
+    <form id="userLoginForm" class="space-y-4">
+      <div>
+        <label class="text-sm font-medium">Email</label>
+        <input name="email" type="email" required
+          class="mt-1 w-full bg-slate-800 border border-slate-600 text-slate-200 rounded-xl px-4 py-2 focus:outline-none focus:border-green-500" />
+      </div>
+      <div>
+        <label class="text-sm font-medium">Password</label>
+        <input name="password" type="password" required
+          class="mt-1 w-full bg-slate-800 border border-slate-600 text-slate-200 rounded-xl px-4 py-2 focus:outline-none focus:border-green-500" />
+      </div>
+      <button type="submit" class="btn-primary w-full py-3 rounded-xl">Login</button>
+      <p id="loginMessage" class="text-sm"></p>
+    </form>
+
+    <p class="text-sm text-center mt-6">New here? <a href="register.html" class="text-green-600 font-medium">Create an
+        account</a></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking History - Nearby Turf Finder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="px-6 py-6">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-full border border-emerald-400 flex items-center justify-center text-emerald-400">FT</div>
+        <div>
+          <p class="text-white font-semibold">Nearby Turf Finder</p>
+          <p class="text-xs text-slate-400">Palakkad</p>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a data-nav href="index.html" class="text-slate-300 hover:text-emerald-400">Home</a>
+        <a data-nav href="turfs.html" class="text-slate-300 hover:text-emerald-400">Turfs</a>
+        <a data-nav href="history.html" class="text-slate-300 hover:text-emerald-400">Bookings</a>
+      </div>
+      <a href="turfs.html" class="neon-btn px-4 py-2 rounded-xl text-sm">Book More</a>
+    </nav>
+  </header>
+
+  <main class="px-6 pb-16">
+    <section class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="section-title text-4xl text-white">Booking History</h1>
+          <p class="text-slate-400 mt-2">Track your latest reservations and upcoming slots.</p>
+        </div>
+        <div class="text-slate-400 text-sm">Latest bookings first</div>
+      </div>
+
+      <div class="mt-10 turf-card rounded-3xl p-6">
+        <div id="historyList" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-6 pb-10">
+    <div class="max-w-6xl mx-auto footer-line pt-6 flex flex-col md:flex-row justify-between gap-4 text-sm text-slate-500">
+      <span>Nearby Turf Finder & Booking System</span>
+      <span data-year></span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    const listEl = document.querySelector("#historyList");
+
+    const renderBookings = (bookings) => {
+      if (!bookings.length) {
+        listEl.innerHTML = "<p class=\"text-slate-400\">No bookings yet. Start by booking a turf.</p>";
+        return;
+      }
+
+      listEl.innerHTML = "";
+      bookings.forEach((booking) => {
+        const card = document.createElement("div");
+        card.className = "neon-border rounded-2xl p-4 bg-slate-950/60";
+        card.innerHTML = `
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+            <div>
+              <h3 class="text-white font-semibold">${booking.turf?.turf_name || "Turf"}</h3>
+              <p class="text-sm text-slate-400">${booking.turf?.location || "Palakkad"}</p>
+            </div>
+            <div class="text-sm text-slate-300">
+              <div>${booking.booking_date}</div>
+              <div class="text-emerald-400">${booking.time_slot}</div>
+            </div>
+            <div class="text-sm text-slate-400">
+              <div>${booking.customer_name}</div>
+              <div>${booking.phone}</div>
+            </div>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    };
+
+    const loadBookings = async () => {
+      const { data } = await axios.get(`${APP_CONFIG.API_BASE}/bookings`);
+      renderBookings(data);
+    };
+
+    loadBookings().catch(() => {
+      listEl.innerHTML = "<p class=\"text-red-400\">Unable to load bookings. Start the backend server.</p>";
+    });
+  </script>
+</body>
+</html>

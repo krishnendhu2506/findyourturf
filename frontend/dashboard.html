@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="px-6 py-6 bg-white shadow-sm">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">User Dashboard</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 text-sm">
+        <span id="userName" class="text-slate-600"></span>
+        <a href="my-bookings.html" class="btn-outline px-4 py-2 rounded-xl">My Bookings</a>
+        <button id="logoutBtn" class="btn-outline px-4 py-2 rounded-xl">Logout</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h1 class="text-4xl">Available Football Turfs</h1>
+        <p class="muted mt-2">Pick a turf and view its live slot availability.</p>
+      </div>
+      <input id="searchInput" placeholder="Search by name or location" class="border border-slate-200 rounded-xl px-4 py-2 w-full md:w-72 focus:outline-none focus:border-green-500" />
+    </section>
+
+    <section class="mt-10">
+      <div id="turfGrid" class="grid md:grid-cols-3 gap-6"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

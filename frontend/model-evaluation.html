@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Evaluation • Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/model-evaluation.css" />
+</head>
+
+<body class="text-slate-100">
+  <header class="px-6 py-6">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between">
+      <a class="logo" href="index.html">
+        <img src="assets/logos/logo.svg" alt="Find Your Turf logo" />
+        <div>
+          <p class="text-lg font-semibold">Find Your Turf</p>
+          <p class="text-xs muted">Palakkad Football Network</p>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="index.html" class="text-slate-300 hover:text-green-400">Home</a>
+        <a href="turfs.html" class="text-slate-300 hover:text-green-400">Turfs</a>
+        <a href="model-evaluation.html" class="text-green-400">Model Evaluation</a>
+      </div>
+      <a href="dashboard.html" class="btn-primary px-4 py-2 rounded-xl text-sm">Dashboard</a>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 pb-16">
+    <section class="card p-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-3xl md:text-4xl">Model Evaluation</h1>
+          <p class="muted mt-1">Upload predictions to see accuracy, precision, recall, F1, confusion matrix, ROC/PR
+            curves, and per-class charts.</p>
+        </div>
+        <div class="flex gap-3">
+          <button id="loadSampleBtn" class="btn-outline px-4 py-2 rounded-xl text-sm">Load Sample</button>
+          <button id="resetBtn" class="btn-outline px-4 py-2 rounded-xl text-sm">Reset</button>
+        </div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="card p-5">
+          <h2 class="text-xl">Upload CSV</h2>
+          <p class="muted text-sm mt-1">
+            Required columns: <code>y_true</code>, <code>y_pred</code>. Optional for binary: <code>y_score</code> (0–1).
+            Optional for multiclass: <code>y_score_&lt;label&gt;</code> per label.
+          </p>
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center gap-3">
+            <input id="csvFile" type="file" accept=".csv,text/csv" class="block w-full text-sm" />
+            <button id="parseCsvBtn" class="btn-primary px-4 py-2 rounded-xl text-sm whitespace-nowrap">Parse CSV</button>
+          </div>
+          <p id="csvStatus" class="mt-3 text-sm muted"></p>
+        </div>
+
+        <div class="card p-5">
+          <h2 class="text-xl">Or Paste JSON</h2>
+          <p class="muted text-sm mt-1">
+            Paste an array of objects, e.g. <code>[{"y_true":"A","y_pred":"B","y_score":0.73}]</code>.
+          </p>
+          <textarea id="jsonInput" class="mt-3 w-full p-3 rounded-xl text-sm eval-textarea"
+            placeholder='[{"y_true":"yes","y_pred":"no","y_score":0.12}]'></textarea>
+          <div class="mt-3 flex items-center gap-3">
+            <button id="parseJsonBtn" class="btn-primary px-4 py-2 rounded-xl text-sm">Parse JSON</button>
+            <span id="jsonStatus" class="text-sm muted"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-8 grid lg:grid-cols-3 gap-6">
+      <div class="card p-6 lg:col-span-3">
+        <div class="flex items-center justify-between gap-3">
+          <h2 class="text-2xl">Summary</h2>
+          <div class="text-sm muted"><span id="summaryCounts">No data loaded.</span></div>
+        </div>
+        <div id="metricCards" class="mt-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      </div>
+
+      <div class="card p-6 lg:col-span-2">
+        <h2 class="text-2xl">Confusion Matrix</h2>
+        <p class="muted text-sm mt-1">Rows = actual (<code>y_true</code>), columns = predicted (<code>y_pred</code>).</p>
+        <div id="confusionMatrix" class="mt-4 overflow-auto"></div>
+      </div>
+
+      <div class="card p-6">
+        <h2 class="text-2xl">Per-Class Metrics</h2>
+        <p class="muted text-sm mt-1">Precision, recall, and F1 for each label.</p>
+        <div id="perClassTable" class="mt-4 overflow-auto"></div>
+      </div>
+
+      <div class="card p-6 lg:col-span-3">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-2">
+          <div>
+            <h2 class="text-2xl">Charts</h2>
+            <p class="muted text-sm mt-1">ROC/PR require score columns. Bar chart works with only <code>y_true</code> +
+              <code>y_pred</code>.
+            </p>
+          </div>
+          <div class="text-sm muted" id="curveStatus"></div>
+        </div>
+        <div class="mt-5 grid lg:grid-cols-3 gap-6">
+          <div class="card p-5">
+            <h3 class="text-lg">ROC Curve</h3>
+            <div id="rocChart" class="mt-3"></div>
+          </div>
+          <div class="card p-5">
+            <h3 class="text-lg">Precision–Recall Curve</h3>
+            <div id="prChart" class="mt-3"></div>
+          </div>
+          <div class="card p-5">
+            <h3 class="text-lg">Per-Class Bars</h3>
+            <div id="barsChart" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-6 py-8">
+    <div class="max-w-6xl mx-auto text-sm text-slate-400">Find Your Turf • Model Evaluation • <span
+        id="year"></span></div>
+  </footer>
+
+  <script src="js/model-evaluation.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

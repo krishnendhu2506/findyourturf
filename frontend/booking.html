@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed - Find Your Turf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen flex items-center justify-center bg-green-50">
+  <div class="glass rounded-3xl p-10 max-w-lg w-full text-center">
+    <div class="icon-badge inline-flex items-center gap-2 mx-auto"><i class="fa-solid fa-circle-check"></i> Booking Confirmed</div>
+    <h1 class="text-4xl mt-4">Match Ready</h1>
+    <p id="bookingSummary" class="muted mt-4"></p>
+    <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="dashboard.html" class="btn-primary px-6 py-3 rounded-xl">Back to Dashboard</a>
+      <a href="turf-details.html" class="btn-outline px-6 py-3 rounded-xl">Book Another Slot</a>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    const summary = document.getElementById("bookingSummary");
+    const data = JSON.parse(localStorage.getItem("lastBooking") || "null");
+    if (data) {
+      summary.textContent = `${data.turf_name} on ${data.date} at ${data.time_slot}`;
+    } else {
+      summary.textContent = "Your booking is confirmed. See dashboard for details.";
+    }
+  </script>
+</body>
+</html>
